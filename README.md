@@ -69,37 +69,37 @@ Huatuo用例代码在: [Assets/HotFix/PerfBenchmark](Assets/HotFix/PerfBenchmark
 在AOT或Huatuo的用例代码中添加一个类型，按照如下格式编写即可; </br>
 
 ```csharp
-    [PerfClass("用例名称", "用例分类(比如：Huatuo, AOT)", "用例类型(比如：和Unity交互，数值计算)")]
-    public class UnityRotate : IBenchmark
+[PerfClass("用例名称", "用例分类(比如：Huatuo, AOT)", "用例类型(比如：和Unity交互，数值计算)")]
+public class UnityRotate : IBenchmark
+{
+    List<GameObject> objList;
+    int frame;
+    public void Clear()
     {
-        List<GameObject> objList;
-        int frame;
-        public void Clear()
-        {
-            // 用于清理用例数据
-            UnityUtils.ReleaseObjects(objList);
-        }
+        // 用于清理用例数据
+        UnityUtils.ReleaseObjects(objList);
+    }
 
-        public void Prepare()
-        {
-            // 用于准备用例数据
-            objList = UnityUtils.BuildObjects("Huatuo", nameof(UnityRotate), PerfLevel.unityGameObjectCount);
-            this.frame = 10;
-        }
+    public void Prepare()
+    {
+        // 用于准备用例数据
+        objList = UnityUtils.BuildObjects("Huatuo", nameof(UnityRotate), PerfLevel.unityGameObjectCount);
+        this.frame = 10;
+    }
 
-        public void Run()
+    public void Run()
+    {
+        // 用于执行用例人物
+        for (int frameIndex = 0; frameIndex < frame; ++frameIndex)
         {
-            // 用于执行用例人物
-            for (int frameIndex = 0; frameIndex < frame; ++frameIndex)
+            for (int i = 0; i < objList.Count; i++)
             {
-                for (int i = 0; i < objList.Count; i++)
-                {
-                    var obj = objList[i];
-                    obj.transform.Rotate(Vector3.up, 60 * i);
-                }
+                var obj = objList[i];
+                obj.transform.Rotate(Vector3.up, 60 * i);
             }
         }
     }
+}
 ```
 如是写在了其他的assembly中，记得调用
 ```csharp
