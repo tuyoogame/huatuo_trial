@@ -57,3 +57,54 @@ huatuo为c++实现，只有打包后才可使用。日常开发在编辑器下�
 - 再将运行，屏幕上会打印"hello,world"。
 
 剩下的体验之旅，比如各种c#特性，自己体验吧。
+
+### Benchmark
+AOT用例代码在: [Assets/Main/PerfBenchmark](Assets/Main/PerfBenchmark)</br>
+Huatuo用例代码在: [Assets/HotFix/PerfBenchmark](Assets/HotFix/PerfBenchmark)</br>
+
+
+![图片](Doc/benchmark.jpg)
+
+#### 如何添加用例？
+在AOT或Huatuo的用例代码中添加一个类型，按照如下格式编写即可; </br>
+
+```csharp
+    [PerfClass("用例名称", "用例分类(比如：Huatuo, AOT)", "用例类型(比如：和Unity交互，数值计算)")]
+    public class UnityRotate : IBenchmark
+    {
+        List<GameObject> objList;
+        int frame;
+        public void Clear()
+        {
+            // 用于清理用例数据
+            UnityUtils.ReleaseObjects(objList);
+        }
+
+        public void Prepare()
+        {
+            // 用于准备用例数据
+            objList = UnityUtils.BuildObjects("Huatuo", nameof(UnityRotate), PerfLevel.unityGameObjectCount);
+            this.frame = 10;
+        }
+
+        public void Run()
+        {
+            // 用于执行用例人物
+            for (int frameIndex = 0; frameIndex < frame; ++frameIndex)
+            {
+                for (int i = 0; i < objList.Count; i++)
+                {
+                    var obj = objList[i];
+                    obj.transform.Rotate(Vector3.up, 60 * i);
+                }
+            }
+        }
+    }
+```
+如是写在了其他的assembly中，记得调用
+```csharp
+Huatuo.Perf.PerfTestFramework.Instance.CollectAllPerfTask(typeof(PerfEntry).Assembly);
+```
+注册一下你的用例;
+运行游戏后，点击 benchmark按钮即可进入benchmark场景，点击"运行所有用例"按钮即可开始测试;
+用例运行完成后，报告会自动保存在 **UnityEngine.Application.persistentDataPath + "/huatuo_perf_result.tab"** 中，报告是 "\t"分割的文本文件，可以用Excel打开进行二次数据整理;
