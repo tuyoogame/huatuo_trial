@@ -40,6 +40,7 @@ public class LoadDll : MonoBehaviour
             UnityEngine.Debug.LogError("dll未加载");
             return;
         }
+        Huatuo.Perf.PerfTestFramework.Instance.CollectAllPerfTask(typeof(LoadDll).Assembly);
         var appType = gameAss.GetType("App");
         var mainMethod = appType.GetMethod("Main");
         mainMethod.Invoke(null, null);

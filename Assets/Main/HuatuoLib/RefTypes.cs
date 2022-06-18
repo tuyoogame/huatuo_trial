@@ -25,6 +25,9 @@ public class RefTypes : MonoBehaviour
         Instantiate<GameObject>(null, new Vector3(), new Quaternion(), null);
         this.gameObject.AddComponent<RefTypes>();
         gameObject.AddComponent(typeof(RefTypes));
+
+       var res = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(""); //
+        res.completed += (AsyncOperation obj) => { };
     }
 
     void RefNullable()
