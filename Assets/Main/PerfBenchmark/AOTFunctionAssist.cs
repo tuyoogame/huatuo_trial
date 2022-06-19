@@ -17,8 +17,6 @@ namespace Huatuo.Perf
 
         public void VoidThreeValueParam(int a, int b, int c) { }
 
-        public void VoidMultiValueParam(int a, int b, int c, int d, float e, float f, float g, float h) { }
-
         public int ValueNoParam() { return 0; }
 
         public int ValueOneValueParam(int a) { return 0; }
@@ -26,8 +24,6 @@ namespace Huatuo.Perf
         public int ValueTwoValueParam(int a, int b) { return 0; }
 
         public int ValueThreeValueParam(int a, int b, int c) { return 0; }
-
-        public int ValueMultiValueParam(int a, int b, int c, int d, float e, float f, float g, float h) { return 0; }
 
         public Vector3 Vec3NoParam() { return new Vector3(1, 1, 1); }
 

@@ -108,33 +108,6 @@
         }
     }
 
-    [PerfClass(nameof(VoidMultiValueParam), "AOT", "调用AOT函数")]
-    public class VoidMultiValueParam : IBenchmark
-    {
-        int number;
-        int frame;
-        AOTFunctionAssist obj;
-        public void Clear() { }
-
-        public void Prepare()
-        {
-            number = PerfLevel.callAOTFunctionCount;
-            frame = 10;
-            obj = new AOTFunctionAssist();
-        }
-
-        public void Run()
-        {
-            for (int i = 0; i < frame; i++)
-            {
-                for (var j = 0; j < number; j++)
-                {
-                    obj.VoidMultiValueParam(i, i + 1, i + 2, i + 3, i, i + 1, i + 2, i + 3);
-                }
-            }
-        }
-    }
-
     [PerfClass(nameof(ValueNoParam), "AOT", "调用AOT函数")]
     public class ValueNoParam : IBenchmark
     {
@@ -238,33 +211,6 @@
                 for (var j = 0; j < number; j++)
                 {
                     var res = obj.ValueThreeValueParam(i, i + 1, i + 2);
-                }
-            }
-        }
-    }
-
-    [PerfClass(nameof(ValueMultiValueParam), "AOT", "调用AOT函数")]
-    public class ValueMultiValueParam : IBenchmark
-    {
-        int number;
-        int frame;
-        AOTFunctionAssist obj;
-        public void Clear() { }
-
-        public void Prepare()
-        {
-            number = PerfLevel.callAOTFunctionCount;
-            frame = 10;
-            obj = new AOTFunctionAssist();
-        }
-
-        public void Run()
-        {
-            for (int i = 0; i < frame; i++)
-            {
-                for (var j = 0; j < number; j++)
-                {
-                    var res = obj.ValueMultiValueParam(i, i + 1, i + 2, i + 3, i, i + 1, i + 2, i + 3);
                 }
             }
         }

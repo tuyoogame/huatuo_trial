@@ -8,6 +8,7 @@ public class CreateByHotFix2 : MonoBehaviour
     void Start()
     {
         Debug.Log("CreateByHotFix2");
+        Huatuo.Perf.PerfTestFramework.Instance.CollectAllPerfTask(typeof(CreateByHotFix2).Assembly);
     }
 
     // Update is called once per frame

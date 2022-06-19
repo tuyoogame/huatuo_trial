@@ -63,6 +63,11 @@ AOT用例代码在: [Assets/Main/PerfBenchmark](Assets/Main/PerfBenchmark)</br>
 Huatuo用例代码在: [Assets/HotFix/PerfBenchmark](Assets/HotFix/PerfBenchmark)</br>
 
 
+测试用PC硬件指标：
+- 处理器：i7-10700K CPU @ 3.80GHz，3792 Mhz
+- 内存：64GB
+
+以下是性能测试数据(所有用例均在主线程运行，且不保证运行顺序)
 ![图片](Doc/benchmark.jpg)
 
 #### 如何添加用例？
