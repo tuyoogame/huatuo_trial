@@ -1,6 +1,6 @@
-# huatuo 体验项目
+# huatuo Benchmark项目
 
-一个示例热更新项目，本工程相比[原体验工程](https://github.com/focus-creative-games/huatuo_trial)增加了Benchmark代码。</br>
+本工程相比[huatuo体验工程](https://github.com/focus-creative-games/huatuo_trial)增加了Benchmark代码。</br>
 
 想了解更多，请加 QQ群: 
 
@@ -8,7 +8,7 @@
 - huatuo使用疑难咨询：651188171
 
 
-**示例项目使用 Unity 2020.3.33(任意后缀子版本如f1、f1c1、f1c2都可以) 版本**，需要精确匹配。
+**项目使用 Unity 2020.3.33(任意后缀子版本如f1、f1c1、f1c2都可以) 版本**，需要精确匹配。
 
 ## Benchmark
 
